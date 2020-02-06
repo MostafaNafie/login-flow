@@ -10,8 +10,13 @@ import UIKit
 
 class SignupViewController: UIViewController {
 	
-	@IBOutlet weak var emailTextField: UITextField!
-	@IBOutlet weak var passwordTextField: UITextField!
+	@IBOutlet weak var emailTextField: UITextField! {
+		didSet { setup(textField: emailTextField) }
+	}
+	
+	@IBOutlet weak var passwordTextField: UITextField! {
+		didSet { setup(textField: passwordTextField) }
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +29,25 @@ class SignupViewController: UIViewController {
 	}
 
 	@IBAction func signupButtonTapped(_ sender: Any) {
+		saveData()
 		dismiss(animated: true, completion: nil)
 	}
+}
+
+// MARK: - Helper Functions
+
+extension SignupViewController {
+	
+	private func saveData() {
+		let defaults = UserDefaults.standard
+		defaults.set(emailTextField.text, forKey: "Email")
+		defaults.set(passwordTextField.text, forKey: "Password")
+	}
+	
+	private func setup(textField: UITextField) {
+		textField.delegate = self
+	}
+	
 }
 
 // MARK: - TextField Delegate
