@@ -18,7 +18,10 @@ class SignupViewController: UIViewController {
 		didSet { setup(textField: passwordTextField) }
 	}
 	
-    override func viewDidLoad() {
+	@IBOutlet weak var genderLabel: UILabel!
+	@IBOutlet weak var genderSwitch: UISwitch!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -31,6 +34,14 @@ class SignupViewController: UIViewController {
 	@IBAction func signupButtonTapped(_ sender: Any) {
 		saveData()
 		dismiss(animated: true, completion: nil)
+	}
+	
+	@IBAction func switchStateChanged(_ sender: Any) {
+		if genderSwitch.isOn {
+			genderLabel.text = "Gender: Male"
+		} else {
+			genderLabel.text = "Gender: Female"
+		}
 	}
 }
 

@@ -78,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vwd-13-yNq">
-                                <rect key="frame" x="107" y="404" width="200" height="88"/>
+                                <rect key="frame" x="107" y="378.5" width="200" height="139"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vvw-hy-48a">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="34"/>
@@ -90,13 +90,30 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xqA-Q1-toL">
+                                        <rect key="frame" x="0.0" y="108" width="200" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender: Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkX-vq-XXU">
+                                                <rect key="frame" x="0.0" y="0.0" width="131" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQN-AB-Ref">
+                                                <rect key="frame" x="151" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="switchStateChanged:" destination="zvQ-Iz-dxC" eventType="valueChanged" id="rnQ-YO-fUA"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="5I3-Cw-00h"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A99-L9-1RZ">
-                                <rect key="frame" x="180" y="525" width="54" height="30"/>
+                                <rect key="frame" x="180" y="550.5" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signupButtonTapped:" destination="zvQ-Iz-dxC" eventType="touchUpInside" id="JBb-wf-x3H"/>
@@ -115,6 +132,8 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="Vvw-hy-48a" id="ogL-yB-6Rw"/>
+                        <outlet property="genderLabel" destination="PkX-vq-XXU" id="tEk-rw-8or"/>
+                        <outlet property="genderSwitch" destination="oQN-AB-Ref" id="CC4-Ft-k32"/>
                         <outlet property="passwordTextField" destination="2tW-hl-d0c" id="xBU-Im-mqe"/>
                     </connections>
                 </viewController>
