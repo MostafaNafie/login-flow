@@ -141,5 +141,46 @@
             </objects>
             <point key="canvasLocation" x="813" y="138"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="yay-BL-74k">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="z6u-OP-ZIN" customClass="ProfileViewController" customModule="LoginFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L86-TG-7JB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbT-o2-Wcc">
+                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB1-PS-SI3">
+                                <rect key="frame" x="177" y="495" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButtonTapped:" destination="z6u-OP-ZIN" eventType="touchUpInside" id="szP-IJ-01W"/>
+                                    <action selector="signupButtonTapped:" destination="zvQ-Iz-dxC" eventType="touchUpInside" id="C2k-wM-OPN"/>
+                                    <action selector="signupButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j9g-Ve-JaO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LB1-PS-SI3" firstAttribute="centerX" secondItem="XbT-o2-Wcc" secondAttribute="centerX" id="M7k-PU-Jw9"/>
+                            <constraint firstItem="XbT-o2-Wcc" firstAttribute="centerY" secondItem="L86-TG-7JB" secondAttribute="centerY" id="OHU-EV-tlP"/>
+                            <constraint firstItem="LB1-PS-SI3" firstAttribute="top" secondItem="XbT-o2-Wcc" secondAttribute="bottom" constant="36.5" id="Pe7-Gc-u8L"/>
+                            <constraint firstItem="XbT-o2-Wcc" firstAttribute="centerX" secondItem="L86-TG-7JB" secondAttribute="centerX" id="ZpJ-TB-fgs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="e9n-DL-2Re"/>
+                    </view>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="XbT-o2-Wcc" id="jKe-Fa-VBk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B4S-VQ-ihv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1468" y="138"/>
+        </scene>
     </scenes>
 </document>

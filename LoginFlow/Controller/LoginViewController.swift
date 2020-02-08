@@ -28,6 +28,20 @@ class LoginViewController: UIViewController {
 	@IBAction func loginButtonTapped(_ sender: Any) {
 		if isDataValid() {
 			print("Valid Data")
+			let defaults = UserDefaults.standard
+			defaults.set(true, forKey: "isLoggedin")
+			dismiss(animated: true, completion: nil)
+
+//			let appDelegate = SceneDelegate()
+
+//			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//			let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+//			self.parent?.addChild(profileVC)
+//			self.removeFromParent()
+			goToProfileScreen()
+
+//			appDelegate.window?.rootViewController = profileVC
+//			appDelegate.window?.makeKeyAndVisible()
 		}
 	}
 	
@@ -49,6 +63,12 @@ extension LoginViewController {
 		let signupVC = storyboard?.instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
 		signupVC.modalPresentationStyle = .fullScreen
 		present(signupVC, animated: true, completion: nil)
+	}
+	
+	private func goToProfileScreen() {
+		let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+		profileVC.modalPresentationStyle = .fullScreen
+		present(profileVC, animated: true, completion: nil)
 	}
 	
 	private func isDataValid() -> Bool {

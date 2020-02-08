@@ -38,9 +38,9 @@ class SignupViewController: UIViewController {
 	
 	@IBAction func switchStateChanged(_ sender: Any) {
 		if genderSwitch.isOn {
-			genderLabel.text = "Gender: Male"
+			genderLabel.text = "Male"
 		} else {
-			genderLabel.text = "Gender: Female"
+			genderLabel.text = "Female"
 		}
 	}
 }
@@ -51,8 +51,10 @@ extension SignupViewController {
 	
 	private func saveData() {
 		let defaults = UserDefaults.standard
+		defaults.set(true, forKey: "isLoggedin")
 		defaults.set(emailTextField.text, forKey: "Email")
 		defaults.set(passwordTextField.text, forKey: "Password")
+		defaults.set(genderLabel.text, forKey: "Gender")
 	}
 	
 	private func setup(textField: UITextField) {

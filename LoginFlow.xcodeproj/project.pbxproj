@@ -14,6 +14,7 @@
 		45B14CCB23EC2A8800F37729 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B14CCA23EC2A8800F37729 /* Assets.xcassets */; };
 		45B14CCE23EC2A8800F37729 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45B14CCC23EC2A8800F37729 /* LaunchScreen.storyboard */; };
 		45B14CD923EC37BD00F37729 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B14CD823EC37BD00F37729 /* SignupViewController.swift */; };
+		45B14CDF23ED937B00F37729 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B14CDE23ED937B00F37729 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		45B14CCD23EC2A8800F37729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45B14CCF23EC2A8800F37729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45B14CD823EC37BD00F37729 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		45B14CDE23ED937B00F37729 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				45B14CC523EC2A8500F37729 /* LoginViewController.swift */,
 				45B14CD823EC37BD00F37729 /* SignupViewController.swift */,
+				45B14CDE23ED937B00F37729 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				45B14CC223EC2A8500F37729 /* AppDelegate.swift in Sources */,
 				45B14CD923EC37BD00F37729 /* SignupViewController.swift in Sources */,
 				45B14CC423EC2A8500F37729 /* SceneDelegate.swift in Sources */,
+				45B14CDF23ED937B00F37729 /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
