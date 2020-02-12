@@ -45,6 +45,31 @@ class SignupViewController: UIViewController {
 	}
 }
 
+
+// MARK: - TextField Delegate
+
+extension SignupViewController: UITextFieldDelegate {
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		// Dismiss the keyboard when the user presses enter
+		textField.resignFirstResponder()
+		return true
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		if textField == emailTextField {
+			if !isValidEmail(email: textField.text!) {
+				presentAlert(withTitle: "Invalid Email", message: "Check the entered email")
+			}
+		} else if textField == passwordTextField {
+			if !isValidPassword(password: textField.text!) {
+				presentAlert(withTitle: "Invalid Password", message: "Password must be minimum 8 characters at least 1 Capital Alphabet, 1 Number and 1 Special Character")
+			}
+		}
+	}
+	
+}
+
 // MARK: - Helper Functions
 
 extension SignupViewController {
@@ -61,16 +86,22 @@ extension SignupViewController {
 		textField.delegate = self
 	}
 	
-}
-
-// MARK: - TextField Delegate
-
-extension SignupViewController: UITextFieldDelegate {
+	private func isValidEmail(email: String) -> Bool {
+		let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+		return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+	}
 	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		// Dismiss the keyboard when the user presses enter
-		textField.resignFirstResponder()
-		return true
+	private func isValidPassword(password: String) -> Bool {
+		let passwordRegex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"
+		return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
+	}
+	
+	private func presentAlert(withTitle title: String, message: String?) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let OKAction = UIAlertAction(title: "OK", style: .default)
+		alertController.addAction(OKAction)
+		present(alertController, animated: true, completion: nil)
 	}
 	
 }
+
