@@ -24,24 +24,14 @@ class LoginViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 	}
+	
 
 	@IBAction func loginButtonTapped(_ sender: Any) {
 		if isDataValid() {
 			print("Valid Data")
-			let defaults = UserDefaults.standard
-			defaults.set(true, forKey: "isLoggedin")
+			loginUser()
 			dismiss(animated: true, completion: nil)
-
-//			let appDelegate = SceneDelegate()
-
-//			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//			let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-//			self.parent?.addChild(profileVC)
-//			self.removeFromParent()
 			goToProfileScreen()
-
-//			appDelegate.window?.rootViewController = profileVC
-//			appDelegate.window?.makeKeyAndVisible()
 		}
 	}
 	
@@ -51,6 +41,19 @@ class LoginViewController: UIViewController {
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true) //This will hide the keyboard
+	}
+	
+}
+
+
+// MARK: - TextField Delegate
+
+extension LoginViewController: UITextFieldDelegate {
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		// Dismiss the keyboard when the user presses enter
+		textField.resignFirstResponder()
+		return true
 	}
 	
 }
@@ -72,15 +75,33 @@ extension LoginViewController {
 	}
 	
 	private func isDataValid() -> Bool {
-		let defaults = UserDefaults.standard
-		if emailTextField.text != defaults.string(forKey: "Email") {
+
+		guard !emailTextField.text!.isEmpty else {
+			presentAlert(withTitle: "No Email", message: "Please enter your email")
+			return false
+		}
+		
+		guard !passwordTextField.text!.isEmpty else {
+			presentAlert(withTitle: "No Password", message: "Please enter your password")
+			return false
+		}
+		
+		guard let data = UserDefaults.standard.data(forKey: "user") else { return false }
+		print("User is Found")
+		let user = try? JSONDecoder().decode(User.self, from: data)
+		
+		if emailTextField.text != user?.email {
 			print("Wrong Email")
+			presentAlert(withTitle: "Wrong Email", message: "Please check your email")
 			return false
 		}
-		if passwordTextField.text != defaults.string(forKey: "Password") {
+		
+		if passwordTextField.text != user?.password {
 			print("Wrong Password")
+			presentAlert(withTitle: "Wrong Password", message: "Please check your password")
 			return false
 		}
+		
 		return true
 	}
 	
@@ -88,16 +109,22 @@ extension LoginViewController {
 		textField.delegate = self
 	}
 	
-}
-
-// MARK: - TextField Delegate
-
-extension LoginViewController: UITextFieldDelegate {
+	private func presentAlert(withTitle title: String, message: String?) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let OKAction = UIAlertAction(title: "OK", style: .default)
+		alertController.addAction(OKAction)
+		present(alertController, animated: true, completion: nil)
+	}
 	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		// Dismiss the keyboard when the user presses enter
-		textField.resignFirstResponder()
-		return true
+	private func loginUser() {
+		// Get user data from user defaults
+		guard let data = UserDefaults.standard.data(forKey: "user") else { return }
+		// Set isLoggedIn to true
+		var user = try? JSONDecoder().decode(User.self, from: data)
+		user?.isLoggedIn = true
+		// Save data
+		let updatedData = try? JSONEncoder().encode(user)
+		UserDefaults.standard.set(updatedData, forKey: "user")
 	}
 	
 }

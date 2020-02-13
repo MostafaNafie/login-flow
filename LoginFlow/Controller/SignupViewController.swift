@@ -75,11 +75,9 @@ extension SignupViewController: UITextFieldDelegate {
 extension SignupViewController {
 	
 	private func saveData() {
-		let defaults = UserDefaults.standard
-		defaults.set(true, forKey: "isLoggedin")
-		defaults.set(emailTextField.text, forKey: "Email")
-		defaults.set(passwordTextField.text, forKey: "Password")
-		defaults.set(genderLabel.text, forKey: "Gender")
+		let user = User(email: emailTextField.text, password: passwordTextField.text, gender: genderSwitch.isOn, isLoggedIn: false)
+		let data = try? JSONEncoder().encode(user)
+		UserDefaults.standard.set(data, forKey: "user")
 	}
 	
 	private func setup(textField: UITextField) {
