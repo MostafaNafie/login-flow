@@ -11,20 +11,15 @@ import UIKit
 class LoginViewController: UIViewController {
 
 	@IBOutlet weak var signupButton: UIButton!
-	
-	@IBOutlet weak var emailTextField: UITextField! {
-		didSet { setup(textField: emailTextField) }
-	}
-	
-	@IBOutlet weak var passwordTextField: UITextField! {
-		didSet { setup(textField: passwordTextField) }
-	}
+	@IBOutlet weak var emailTextField: UITextField!
+	@IBOutlet weak var passwordTextField: UITextField!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+
+		setup(textField: emailTextField)
+		setup(textField: passwordTextField)
 	}
-	
 
 	@IBAction func loginButtonTapped(_ sender: Any) {
 		if isDataValid() {
@@ -49,13 +44,11 @@ class LoginViewController: UIViewController {
 // MARK: - TextField Delegate
 
 extension LoginViewController: UITextFieldDelegate {
-	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		// Dismiss the keyboard when the user presses enter
 		textField.resignFirstResponder()
 		return true
 	}
-	
 }
 
 // MARK: - Helper Functions
@@ -63,15 +56,15 @@ extension LoginViewController: UITextFieldDelegate {
 extension LoginViewController {
 	
 	private func goToSignupScreen() {
-		let signupVC = storyboard?.instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
-		signupVC.modalPresentationStyle = .fullScreen
-		present(signupVC, animated: true, completion: nil)
+		let signupVC = storyboard?.instantiateViewController(withIdentifier: "SignupViewController")
+		signupVC!.modalPresentationStyle = .fullScreen
+		present(signupVC!, animated: true, completion: nil)
 	}
 	
 	private func goToProfileScreen() {
-		let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-		profileVC.modalPresentationStyle = .fullScreen
-		present(profileVC, animated: true, completion: nil)
+		let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController")
+		profileVC!.modalPresentationStyle = .fullScreen
+		present(profileVC!, animated: true, completion: nil)
 	}
 	
 	private func isDataValid() -> Bool {

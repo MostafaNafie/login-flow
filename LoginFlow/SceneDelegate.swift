@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		if user!.isLoggedIn! {
 			print("User is LoggedIn")
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+			let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
 			self.window?.rootViewController = profileVC
 		}
 		

@@ -10,13 +10,13 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-	@IBOutlet weak var welcomeLabel: UILabel! {
-		didSet { welcomeLabel.text = UserDefaults.standard.string(forKey: "Email") }
-	}
+	@IBOutlet weak var welcomeLabel: UILabel!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-    }
+
+		displayUserInfo()
+	}
 
 	@IBAction func signOutButtonTapped(_ sender: Any) {
 		signOutUser()
@@ -32,6 +32,12 @@ extension ProfileViewController {
 		let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
 		loginVC!.modalPresentationStyle = .fullScreen
 		present(loginVC!, animated: true, completion: nil)
+	}
+	
+	private func displayUserInfo() {
+		guard let data = UserDefaults.standard.data(forKey: "user") else { return }
+		let user = try? JSONDecoder().decode(User.self, from: data)
+		welcomeLabel.text = "Welcome " + (user?.email)!
 	}
 	
 	private func signOutUser() {

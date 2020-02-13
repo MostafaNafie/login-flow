@@ -10,22 +10,17 @@ import UIKit
 
 class SignupViewController: UIViewController {
 	
-	@IBOutlet weak var emailTextField: UITextField! {
-		didSet { setup(textField: emailTextField) }
-	}
-	
-	@IBOutlet weak var passwordTextField: UITextField! {
-		didSet { setup(textField: passwordTextField) }
-	}
-	
+	@IBOutlet weak var emailTextField: UITextField!
+	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var genderLabel: UILabel!
 	@IBOutlet weak var genderSwitch: UISwitch!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
+		setup(textField: emailTextField)
+		setup(textField: passwordTextField)
+	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true) //This will hide the keyboard
