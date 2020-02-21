@@ -14,18 +14,27 @@ class SignupViewController: UIViewController {
 	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var genderLabel: UILabel!
 	@IBOutlet weak var genderSwitch: UISwitch!
+	@IBOutlet weak var profileImageView: UIImageView!
+	@IBOutlet weak var addImageButton: UIButton!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
 		setup(textField: emailTextField)
 		setup(textField: passwordTextField)
+		profileImageView.isHidden = true
+		profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+		addImageButton.layer.cornerRadius = addImageButton.frame.width / 2
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.view.endEditing(true) //This will hide the keyboard
 	}
-
+	
+	@IBAction func addImageButtonTapped(_ sender: Any) {
+		showImagePicker()
+	}
+	
 	@IBAction func signupButtonTapped(_ sender: Any) {
 		saveData()
 		dismiss(animated: true, completion: nil)
@@ -40,6 +49,18 @@ class SignupViewController: UIViewController {
 	}
 }
 
+// MARK: - ImagePickerController Delegate
+
+extension SignupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		if let editedImage = info[.editedImage] as? UIImage {
+			profileImageView.image = editedImage
+			profileImageView.isHidden = false
+			addImageButton.isHidden = true
+		}
+		dismiss(animated: true)
+	}
+}
 
 // MARK: - TextField Delegate
 
@@ -77,6 +98,14 @@ extension SignupViewController {
 	
 	private func setup(textField: UITextField) {
 		textField.delegate = self
+	}
+	
+	private func showImagePicker() {
+		let imagePicker = UIImagePickerController()
+		imagePicker.delegate = self
+		imagePicker.sourceType = .photoLibrary
+		imagePicker.allowsEditing = true
+		present(imagePicker, animated: true)
 	}
 	
 	private func isValidEmail(email: String) -> Bool {
